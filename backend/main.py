@@ -7,8 +7,11 @@ app = FastAPI()
 
 @app.get("/analyze/{symbol}")
 def analyze(symbol: str):
-    result = analyze_investment(symbol)
-    return result
+    try:
+        result = analyze_investment(symbol)
+        return result
+    except Exception as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     uvicorn.run(
@@ -16,3 +19,4 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 8000))
     )
+
