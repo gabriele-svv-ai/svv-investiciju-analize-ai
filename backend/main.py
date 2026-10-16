@@ -2,6 +2,7 @@ import os
 from fastapi import FastAPI
 from backend.service.analysis import analyze_investment
 import uvicorn
+import traceback
 
 app = FastAPI()
 
@@ -11,6 +12,9 @@ def analyze(symbol: str):
         result = analyze_investment(symbol)
         return result
     except Exception as e:
+        # Spausdiname klaidą į Render logus
+        traceback.print_exc()
+        # Grąžiname klaidą į naršyklę
         return {"error": str(e)}
 
 if __name__ == "__main__":
@@ -19,4 +23,3 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 8000))
     )
-
