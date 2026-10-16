@@ -1,6 +1,6 @@
 import os
 from fastapi import FastAPI
-from service.analysis import analyze_investment
+from backend.service.analysis import analyze_investment
 import uvicorn
 
 app = FastAPI()
