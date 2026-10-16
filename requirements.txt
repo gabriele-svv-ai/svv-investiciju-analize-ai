@@ -1,3 +1,7 @@
+fastapi
+uvicorn
 gradio
 numpy
 numpy-financial
+pandas
+yfinance
